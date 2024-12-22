@@ -9,7 +9,7 @@ Este projeto utiliza um sensor MPU6050 conectado a uma placa NodeMCU ESP8266 par
 - **Cabos jumper**
 - **Computador com IDE do Arduino instalada**
 - **Acesso à internet via Wi-Fi**
-- **Cliente MQTT (por exemplo, MQTT Explorer)**
+- **MQTT Explorer**
 
 ---
 
