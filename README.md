@@ -56,8 +56,8 @@ Conecte o sensor MPU6050 à NodeMCU ESP8266 da seguinte forma:
 | SCL     | D1 (GPIO 5)     |
 | SDA     | D2 (GPIO 4)     |
 
-[Datasheet MPU6060](https://components101.com/sensors/mpu6050-module)
-[Datasheet ESP8266](https://components101.com/development-boards/nodemcu-esp8266-pinout-features-and-datasheet)
+- [Datasheet MPU6060](https://components101.com/sensors/mpu6050-module)
+- [Datasheet ESP8266](https://components101.com/development-boards/nodemcu-esp8266-pinout-features-and-datasheet)
 
 ### 5. Configurar o Código
 
