@@ -1,6 +1,4 @@
-# Risco de Queda - Guia Detalhado
-
-Este projeto utiliza um sensor MPU6050 conectado a uma placa NodeMCU ESP8266 para monitorar o movimento e determinar o status "PARADO" ou "EM MOVIMENTO", publicando essas informações via MQTT para um broker.
+# Guia Detalhado
 
 ## Materiais Necessários
 
