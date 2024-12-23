@@ -56,15 +56,18 @@ Conecte o sensor MPU6050 à NodeMCU ESP8266 da seguinte forma:
 | SCL     | D1 (GPIO 5)     |
 | SDA     | D2 (GPIO 4)     |
 
+[Datasheet MPU6060](https://components101.com/sensors/mpu6050-module)
+[Datasheet ESP8266](https://components101.com/development-boards/nodemcu-esp8266-pinout-features-and-datasheet)
+
 ### 5. Configurar o Código
 
 1. Abra a IDE do Arduino e copie o código fornecido.
 2. Substitua as seguintes informações no código:
    - `ssid`: o nome da sua rede Wi-Fi.
    - `password`: a senha da sua rede Wi-Fi.
-   - `mqtt_server`: o IP do seu broker MQTT (se estiver usando o MQTT Explorer no seu computador, veja abaixo).
-
-### 6. Configurar o MQTT Explorer
+   - `mqtt_server`: o IP do seu broker MQTT 
+     
+### 6. Configurar o MQTT Explorer no seu computador
 
 1. Baixe e instale o [MQTT Explorer](https://mqtt-explorer.com/).
 2. Abra o programa e configure uma nova conexão:
