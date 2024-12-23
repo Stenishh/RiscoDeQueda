@@ -12,7 +12,7 @@ Este projeto utiliza um sensor MPU6050 conectado a uma placa NodeMCU ESP8266 par
 - **MQTT Explorer**
 
 ---
-[Acessar esse codigo (https://github.com/Stenishh/RiscoDeQueda/blob/main/Risco%20de%20queda/CODIGOS/CalibracaoAutomaticaMPU/CalibracaoAutomaticaMPU.ino)]
+[Acessar esse codigo https://github.com/Stenishh/RiscoDeQueda/blob/main/Risco%20de%20queda/CODIGOS/CalibracaoAutomaticaMPU/CalibracaoAutomaticaMPU.ino]
 
 ## Passo a Passo
 
