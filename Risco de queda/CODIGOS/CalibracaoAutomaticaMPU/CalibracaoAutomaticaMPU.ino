@@ -7,13 +7,13 @@
 MPU6050 mpu6050(Wire);
 
 // Configurações Wi-Fi
-const char* ssid = "CARTOON_2.4_XT";
-const char* password = "fvm152604";
+const char* ssid = "Iphone de Fernando";  // Nome da sua rede Wi-Fi
+const char* password = "urubu123";    // Senha da sua rede Wi-Fi
 
 // Configurações MQTT
-const char* mqtt_server = "test.mosquitto.org";
-const int mqtt_port = 1883;
-const char* mqtt_topic = "mpu6050/status";
+const char* mqtt_server = "192.168.68.108"; // IP do seu Mac onde o Mosquitto está rodando
+const int mqtt_port = 1883;                 // Porta do Mosquitto
+const char* mqtt_topic = "mpu6050/status";  // Tópico para envio de mensagens
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -21,6 +21,9 @@ PubSubClient client(espClient);
 // Variáveis de referência dinâmica
 float refAccX = 0, refAccY = 0, refAccZ = 0;
 float refGyroX = 0, refGyroY = 0, refGyroZ = 0;
+
+// Variável para armazenar o status anterior
+String lastStatus = "";
 
 // Função para recalibrar as referências
 void calibrateReference() {
@@ -57,9 +60,10 @@ void reconnectMQTT() {
   if (!client.connected() && millis() - lastAttempt >= retryInterval) {
     Serial.println("Tentando reconectar ao MQTT...");
     if (client.connect("ESP8266Client")) {
-      Serial.println("Reconectado ao MQTT!");
+      Serial.println("Conectado ao MQTT com sucesso!");
     } else {
-      Serial.println("Falha na reconexão MQTT.");
+      Serial.print("Falha na reconexão MQTT. Código de erro: ");
+      Serial.println(client.state());
     }
     lastAttempt = millis();
   }
@@ -112,19 +116,27 @@ void loop() {
   Serial.print(" | GyroY: "); Serial.print(gyroY);
   Serial.print(" | GyroZ: "); Serial.println(gyroZ);
 
-  // Comparar com valores de referência dinâmica
+  // Determinar o status atual
   String status;
-  if (abs(accX - refAccX) < 0.2 && abs(accY - refAccY) < 0.2 && abs(accZ - refAccZ) < 0.2 &&
-      abs(gyroX - refGyroX) < 5.0 && abs(gyroY - refGyroY) < 5.0 && abs(gyroZ - refGyroZ) < 5.0) {
+  if (accY < -0.5) { // Limite para detectar queda no eixo Y
+    status = "QUEDA DETECTADA";
+  } else if (abs(accX - refAccX) < 0.2 && abs(accY - refAccY) < 0.2 && abs(accZ - refAccZ) < 0.2 &&
+             abs(gyroX - refGyroX) < 5.0 && abs(gyroY - refGyroY) < 5.0 && abs(gyroZ - refGyroZ) < 5.0) {
     status = "PARADO";
-  } 
-  else if (abs(accX - refAccX) > 0.5 || abs(gyroX - refGyroX) > 10.0) {
+  } else {
     status = "EM MOVIMENTO";
-  } 
-  
-  // Publicar status no MQTT (apenas se conectado)
-  if (client.connected()) {
-    client.publish(mqtt_topic, status.c_str());
+  }
+
+  // Enviar mensagem ao MQTT apenas se o status mudar
+  if (status != lastStatus) {
+    if (client.connected()) {
+      if (client.publish(mqtt_topic, status.c_str())) {
+        Serial.println("Mensagem publicada no MQTT: " + status);
+      } else {
+        Serial.println("Falha ao publicar mensagem no MQTT.");
+      }
+    }
+    lastStatus = status; // Atualizar o status anterior
   }
 
   // Exibir status no Serial Monitor
