@@ -7,11 +7,11 @@
 MPU6050 mpu6050(Wire);
 
 // Configurações Wi-Fi
-const char* ssid = "Iphone de Fernando";  // Nome da sua rede Wi-Fi
-const char* password = "urubu123";    // Senha da sua rede Wi-Fi
+const char* ssid = "";  // Nome da sua rede Wi-Fi
+const char* password = "";    // Senha da sua rede Wi-Fi
 
 // Configurações MQTT
-const char* mqtt_server = "192.168.68.108"; // IP do seu Mac onde o Mosquitto está rodando
+const char* mqtt_server = ""; // IP onde o Mosquitto está rodando
 const int mqtt_port = 1883;                 // Porta do Mosquitto
 const char* mqtt_topic = "mpu6050/status";  // Tópico para envio de mensagens
 
