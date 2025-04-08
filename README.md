@@ -2,7 +2,7 @@
 
 ## Materiais Necessários
 
-- **NodeMCU ESP8266**
+- **NodeMCU ESP32**
 - **Sensor MPU6050**
 - **Cabos jumper**
 - **Computador com IDE do Arduino instalada**
