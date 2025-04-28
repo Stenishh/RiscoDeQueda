@@ -12,7 +12,7 @@
 
 ---
 
-## [Acessar esse código](https://github.com/Stenishh/RiscoDeQueda/blob/main/Risco%20de%20queda/CODIGOS/CalibracaoAutomaticaMPU/CalibracaoAutomaticaMPU.ino)
+## [Acessar esse código](https://github.com/Stenishh/RiscoDeQueda/blob/main/C%C3%B3digos%20MPU/CODIGOS/CalibracaoAutomaticaMPUmqtt/CalibracaoAutomaticaMPUmqtt.ino)
 
 ## Passo a Passo
 
