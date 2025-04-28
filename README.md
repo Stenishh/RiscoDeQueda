@@ -1,8 +1,9 @@
+
 # Guia Detalhado
 
 ## Materiais Necessários
 
-- **NodeMCU ESP32**
+- **NodeMCU ESP8266**
 - **Sensor MPU6050**
 - **Cabos jumper**
 - **Computador com IDE do Arduino instalada**
@@ -23,17 +24,17 @@ Se você ainda não tem a IDE do Arduino instalada:
 2. Baixe a versão correspondente ao seu sistema operacional.
 3. Instale o programa seguindo as instruções fornecidas no site.
 
-### 2. Configurar a Placa NodeMCU ESP32 na IDE do Arduino
+### 2. Configurar a Placa NodeMCU ESP8266 na IDE do Arduino
 
 1. Abra a IDE do Arduino.
 2. Clique em **Arquivo > Preferências**.
-3. No campo **URL Adicional para Gerenciadores de Placas**, adicione o seguinte link:
+3. No campo **URL Adicional para Gerenciadores de Placas**, adicione:
    ```
-   https://dl.espressif.com/dl/package_esp32_index.json
+   http://arduino.esp8266.com/stable/package_esp8266com_index.json
    ```
 4. Clique em **OK**.
-5. Em **Ferramentas > Placa > Gerenciador de Placas**, procure por **esp32** e instale o pacote.
-6. Selecione a placa **NodeMCU-32S** em **Ferramentas > Placa**.
+5. Em **Ferramentas > Placa > Gerenciador de Placas**, procure por **esp8266** e instale o pacote.
+6. Selecione a placa **NodeMCU 1.0 (ESP-12E Module)** em **Ferramentas > Placa**.
 
 ### 3. Baixar Bibliotecas Necessárias
 
@@ -41,22 +42,25 @@ Se você ainda não tem a IDE do Arduino instalada:
 2. Pesquise e instale as seguintes bibliotecas:
    - `MPU6050_tockn`
    - `PubSubClient`
-   - `WiFi`
+   - `ESP8266WiFi`
 3. Aguarde até que todas as bibliotecas sejam instaladas.
 
 ### 4. Fazer Conexões Físicas
 
-Conecte o sensor MPU6050 à NodeMCU ESP32 da seguinte forma:
+Conecte o sensor MPU6050 à NodeMCU ESP8266 da seguinte forma:
 
-| MPU6050 | NodeMCU ESP32 |
-|---------|---------------|
-| VCC     | 3V3           |
-| GND     | GND           |
-| SCL     | GPIO 22       |
-| SDA     | GPIO 21       |
+| MPU6050 | NodeMCU ESP8266 |
+|---------|-----------------|
+| VCC     | 3V3             |
+| GND     | GND             |
+| SCL     | D1 (GPIO 5)     |
+| SDA     | D2 (GPIO 4)     |
+
+> **Atenção**: O ESP8266 não usa GPIO 22 e 21, como o ESP32.  
+> No NodeMCU ESP8266, usa-se **D1** para SCL e **D2** para SDA!
 
 - [Datasheet MPU6050](https://components101.com/sensors/mpu6050-module)
-- [Datasheet ESP32](https://components101.com/microcontrollers/esp32-devkitc)
+- [Datasheet ESP8266 NodeMCU](https://components101.com/development-boards/nodemcu-esp8266)
 
 ### 5. Configurar o Código
 
@@ -76,7 +80,7 @@ Conecte o sensor MPU6050 à NodeMCU ESP32 da seguinte forma:
 
 ### 7. Fazer o Upload do Código para a Placa
 
-1. Conecte a NodeMCU ESP32 ao seu computador usando um cabo USB.
+1. Conecte a NodeMCU ESP8266 ao seu computador usando um cabo USB.
 2. Na IDE do Arduino, selecione a porta correta em **Ferramentas > Porta**.
 3. Clique no ícone de **Upload** para enviar o código para a placa.
 4. Aguarde até que o processo seja concluído.
@@ -94,6 +98,5 @@ Conecte o sensor MPU6050 à NodeMCU ESP32 da seguinte forma:
 
 Se você deseja recalibrar os valores de referência do sensor:
 
-1. Pressione o botão de reset na placa NodeMCU ESP32.
+1. Pressione o botão de reset na placa NodeMCU ESP8266.
 2. Aguarde enquanto as novas referências são calculadas (o processo leva alguns segundos e as mensagens aparecerão no Monitor Serial).
-
