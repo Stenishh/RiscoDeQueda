@@ -1,6 +1,6 @@
-const int fsrPin = 36;  // ADC1_CHANNEL_0 corresponde ao GPIO36 (VP)
-int fsrReading;
-int fsrVoltage;
+const int fsrPin1 = 36;  // ADC1_CHANNEL_0 corresponde ao GPIO36 (VP)
+const int fsrPin2 = 39;  // ADC1_CHANNEL_0 corresponde ao GPIO36 (VP)
+const int fsrPin3 = 34;  // ADC1_CHANNEL_0 corresponde ao GPIO36 (VP)
 
 void setup() {
   Serial.begin(115200);
@@ -13,22 +13,16 @@ void setup() {
 }
 
 void loop() {
-  fsrReading = analogRead(fsrPin);
+  int fsrReading1 = analogRead(fsrPin1);
+  int fsrReading2 = analogRead(fsrPin2);
+  int fsrReading3 = analogRead(fsrPin3);
 
-  // Conversão para estimativa de força (ajuste com base na calibração)
-  float forca = fsrReading / 320.0;
-
-  // Conversão para milivolts
-  fsrVoltage = map(fsrReading, 0, 4095, 0, 3300);
-
-  Serial.print("Leitura: ");
-  Serial.print(fsrReading);
-  Serial.print("  -> Força estimada: ");
-  Serial.print(forca, 2);
-  Serial.print(" N");
-  Serial.print("  -> Voltagem: ");
-  Serial.print(fsrVoltage);
-  Serial.println(" mV");
+  // Envia os valores dos sensores no formato CSV (valores separados por vírgulas)
+  Serial.print(fsrReading1);
+  Serial.print(",");
+  Serial.print(fsrReading2);
+  Serial.print(",");
+  Serial.println(fsrReading3);
 
   delay(200);
 }
